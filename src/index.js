@@ -21,6 +21,7 @@ var Accordion = React.createClass({
     expanded: React.PropTypes.bool,
     header: React.PropTypes.element.isRequired,
     onPress: React.PropTypes.func,
+    onChange: React.PropTypes.func,
     underlayColor: React.PropTypes.string,
     style: React.PropTypes.object
   },
@@ -54,7 +55,7 @@ var Accordion = React.createClass({
 
   toggle() {
     this.state.is_visible = !this.state.is_visible;
-
+    this.props.onChange && this.props.onChange(this.state.is_visible)
     this.tweenState('height', {
       easing: tweenState.easingTypes[this.props.easing],
       duration: this.props.animationDuration,
